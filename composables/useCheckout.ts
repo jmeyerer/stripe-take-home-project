@@ -1,4 +1,4 @@
-class CheckoutItem {
+export class CheckoutItem {
     title: string;
     image: string;
     description: string;
