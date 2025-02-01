@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     componentDir: './components/ui'
   },
   runtimeConfig: {
+    secretKey: process.env.STRIPE_SECRET_KEY ?? "",
     public: {
       publishableKey: process.env.STRIPE_PUBLISHABLE_KEY ?? ""
     }
