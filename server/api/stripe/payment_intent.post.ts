@@ -2,7 +2,8 @@ import Stripe from 'stripe';
 import { CheckoutItem } from '~/composables/useCheckout'
 
 const runtimeConfig = useRuntimeConfig();
-const stripe = new Stripe(runtimeConfig.public.publishableKey as string);
+console.log(runtimeConfig.secretKey)
+const stripe = new Stripe(runtimeConfig.secretKey as string);
 
 
 export class PaymentIntentRequestBody {
@@ -39,7 +40,7 @@ export default defineEventHandler(async (event) => {
 
     const paymentIntent = await stripe.paymentIntents.create({
         amount: calculateOrderAmount(body.items),
-        currency: "eur",
+        currency: "usd",
         // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
         automatic_payment_methods: {
             enabled: true,
