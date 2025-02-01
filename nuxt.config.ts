@@ -19,7 +19,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
+      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY ?? ""
     }
   }
 })
