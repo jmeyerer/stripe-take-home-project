@@ -20,11 +20,11 @@ const props = defineProps<{
               <NuxtImg
                 :src="item.image"
                 format="webp"
-
                 alt="image"
                 width="250" 
                 height="250" 
                 class="rounded-md"
+                placeholder
               ></NuxtImg>
             </CardContent>
             <CardFooter
