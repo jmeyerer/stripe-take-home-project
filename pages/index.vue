@@ -58,7 +58,7 @@ const allItems: CheckoutItem[] = [
 // console.log(data.value)
 
 const cart = useCartStore();
-const { getPriceString } = useCheckout();
+const { getPriceString, getTotalPriceString } = useCheckout();
 const { toast } = useToast();
 
 
@@ -100,12 +100,19 @@ function clearCart() {
           </SheetHeader>
           <div class="flex flex-col items-start space-y-4 h-full w-full">
             <div 
-                class="bg-slate-100 rounded-2xl w-full h-fit p-5"
+                class="relative bg-slate-100 rounded-2xl w-full h-fit p-5"
                 v-for="item of cart.getCart"
             >
+                <Button
+                    class="w-8 h-8 p-0 rounded-full flex items-center justify-center absolute -top-3 -right-3"
+                    @click="cart.removeFromCart(item.id)"
+                >
+                    -
+                </Button>
+
                 <!-- Cart item card -->
                 <div 
-                    class="flex flex-row items-center space-x-3"
+                    class="w-full flex flex-row items-center space-x-4"
                 >
                     <!-- Product image -->
                     <NuxtImg
@@ -120,9 +127,9 @@ function clearCart() {
                     </NuxtImg>
 
                     <!-- Product title and description -->
-                    <div class="w-fit h-fit grid grid-cols-1 gap-0.5">
+                    <div class="flex flex-col items-center w-full h-fit grid grid-cols-1 gap-0.5">
                         <span class="font-bold">{{item.title}}</span>
-                        <span class="text-sm truncate w-3/4 h-8">{{item.description}}</span>
+                        <span class="text-sm truncate w-3/4">{{item.description}}</span>
                     </div>
 
                     <!-- Item pricing breakdown (quantity & price, subtotal of product) -->
@@ -135,8 +142,30 @@ function clearCart() {
                         <span>{{getPriceString(item.price*item.quantity)}}</span>
                     </span>
                 </div>
-                
+            </div>
+            
+            <div
+                v-if="cart.getCart.length > 0"
+                class="w-full"
+            >
+                <Separator class="my-1.5"></Separator>
 
+                <!-- Subtotal calculation -->
+                <div
+                    class="flex flex-col items-end w-full"
+                >
+                    <span class="flex flex-row space-x-8">
+                        <span class="font-bold">Subtotal: </span>
+                        <span>{{ getTotalPriceString(cart.getCart) }}</span>    
+                    </span>
+                </div>
+            </div>
+
+            <div
+                v-else
+                class="font-bold text-black"
+            >
+                The cart is empty. Add some stuff!
             </div>
             
           </div>
