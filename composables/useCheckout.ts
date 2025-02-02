@@ -4,9 +4,9 @@ export class CheckoutItem {
     image: string;
     description: string;
     price: number;
-    quantity: number;
+    quantity: Ref<number>;
 
-    constructor(id: number, title: string, image: string, description: string, price: number, quantity: number) {
+    constructor(id: number, title: string, image: string, description: string, price: number, quantity: Ref<number>) {
         this.id = id;
         this.title = title;
         this.image = image;

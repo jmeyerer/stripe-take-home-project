@@ -13,7 +13,12 @@ export class PaymentIntentRequestBody {
     }
 }
 
-
+/**
+ * Calculates subtotal for of a list of `CheckoutItem`.
+ * 
+ * @param items List of items in user's cart
+ * @returns Calculated subtotal of items in the user's cart
+ */
 function calculateOrderAmount(items: CheckoutItem[]) {
     let totalAmount = 0;
 
@@ -37,15 +42,16 @@ export default defineEventHandler(async (event) => {
     // Get event body
     const body: PaymentIntentRequestBody = await readBody(event);
 
+    // Create a PaymentIntent with the calculated subtotal for the list of items
     const paymentIntent = await stripe.paymentIntents.create({
         amount: calculateOrderAmount(body.items),
         currency: "usd",
-        // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
         automatic_payment_methods: {
             enabled: true,
         },
     });
 
+    // Return the response from the Stripe API of the newly created PaymentIntent
     return {
         paymentIntent: paymentIntent
     };

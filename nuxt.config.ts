@@ -3,9 +3,10 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [
-    '@nuxtjs/tailwindcss', 
+    '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     '@pinia/nuxt',
+    '@nuxt/image',
   ],
   shadcn: {
     /**
@@ -27,4 +28,7 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./stores/**'],
   },
+  image: {
+    provider: "ipx",
+  }
 })
