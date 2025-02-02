@@ -2,6 +2,7 @@
 import { loadStripe } from '@stripe/stripe-js';
 import { PaymentIntentRequestBody } from '~/server/api/stripe/payment_intent.post'
 import { CheckoutItem } from '~/composables/useCheckout'
+import { useToast } from '@/components/ui/toast/use-toast'
 
 import {
   Sheet,
@@ -57,7 +58,18 @@ const allItems: CheckoutItem[] = [
 // console.log(data.value)
 
 const cart = useCartStore();
-const { getPriceString } = useCheckout()
+const { getPriceString } = useCheckout();
+const { toast } = useToast();
+
+
+function clearCart() {
+    toast({
+        title: "Cleared cart"
+    });
+
+    cart.$reset();
+}
+
 
 
 </script>
@@ -70,7 +82,7 @@ const { getPriceString } = useCheckout()
     <div class="max-w-3xl h-fit">
         <CardStack :items="allItems"></CardStack>
         <div class="w-full flex flex-row justify-end">
-            <Button @click="cart.$reset()" class="">Clear cart</Button>
+            <Button @click="clearCart()" class="">Clear cart</Button>
         </div>
     </div>
     <Sheet>
@@ -91,9 +103,11 @@ const { getPriceString } = useCheckout()
                 class="bg-slate-100 rounded-2xl w-full h-fit p-5"
                 v-for="item of cart.getCart"
             >
+                <!-- Cart item card -->
                 <div 
                     class="flex flex-row items-center space-x-3"
                 >
+                    <!-- Product image -->
                     <NuxtImg
                         :src="item.image"
                         format="webp"
@@ -105,12 +119,21 @@ const { getPriceString } = useCheckout()
                     >
                     </NuxtImg>
 
+                    <!-- Product title and description -->
                     <div class="w-fit h-fit grid grid-cols-1 gap-0.5">
                         <span class="font-bold">{{item.title}}</span>
-                        <span class="text-sm truncate w-3/4">{{item.description}}</span>
+                        <span class="text-sm truncate w-3/4 h-8">{{item.description}}</span>
                     </div>
 
-                    <span class="w-fit text-nowrap text-gray-500">{{ getPriceString(item.price) }}</span>
+                    <!-- Item pricing breakdown (quantity & price, subtotal of product) -->
+                    <span class="w-fit text-sm text-nowrap text-gray-500 text-end">
+                        <span>
+                            {{ item.quantity }}x 
+                            {{ getPriceString(item.price) }}
+                        </span>
+                        <Separator class="my-1.5"></Separator>
+                        <span>{{getPriceString(item.price*item.quantity)}}</span>
+                    </span>
                 </div>
                 
 
