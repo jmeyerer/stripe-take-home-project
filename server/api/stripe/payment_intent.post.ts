@@ -23,7 +23,7 @@ function calculateOrderAmount(items: CheckoutItem[]) {
     let totalAmount = 0;
 
     for (let item of items) {
-        totalAmount += (item.price * item.quantity);
+        totalAmount += (item.price * item.quantity.value);
     }
 
     return totalAmount;
