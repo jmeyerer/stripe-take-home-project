@@ -3,6 +3,8 @@ export const useCartStore = defineStore('cartStore', {
       cart: [] as CheckoutItem[]
     }),
     actions: {
-      
+      updateCart(newCart: CheckoutItem[]) {
+        this.cart = newCart;
+      }
     }
   })
