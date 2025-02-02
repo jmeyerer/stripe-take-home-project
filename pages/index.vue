@@ -3,6 +3,17 @@ import { loadStripe } from '@stripe/stripe-js';
 import { PaymentIntentRequestBody } from '~/server/api/stripe/payment_intent.post'
 import { CheckoutItem } from '~/composables/useCheckout'
 
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+
 const runtimeConfig = useRuntimeConfig();
 const stripe = await loadStripe(runtimeConfig.public.publishableKey);
 
@@ -58,5 +69,45 @@ const cart = useCartStore();
             <Button @click="cart.$reset()" class="">Clear cart</Button>
         </div>
     </div>
+    <Sheet>
+        <SheetTrigger as-child>
+            <Button variant="outline">
+              Open
+            </Button>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Shopping Cart</SheetTitle>
+            <SheetDescription class="pb-4">
+              Items
+            </SheetDescription>
+          </SheetHeader>
+          <div class="flex flex-col items-start space-y-4 h-full w-full">
+            <div 
+                class="bg-slate-100 rounded-xl w-full h-fit p-3"
+                v-for="item of cart.getCart"
+            >
+                <div 
+                    class="flex flex-row items-center"
+                >
+                    <NuxtImg
+                        :src="item.image"
+                        format="webp"
+                        alt="image"
+                        width="50" 
+                        height="50" 
+                        class="rounded-lg outline outline-slate-400 outline-2"
+                        placeholder
+                    >
+                    </NuxtImg>
+
+                </div>
+                
+
+            </div>
+            
+          </div>
+        </SheetContent>
+      </Sheet>
   </div>
 </template>
