@@ -38,7 +38,7 @@ const allItems: CheckoutItem[] = [
     {
         id: 3,
         title: "T Shirt",
-        description: "A t-shirt",
+        description: "A t-shirt with a loooooooooot of text in the description",
         image: "/atleast_tee.webp",
         price: 7000,
         quantity: ref(0)
@@ -63,6 +63,9 @@ const cart = useCartStore();
 
 <template>
   <div class="bg-slate-100 w-screen min-h-screen h-full flex flex-col items-center py-16">
+    <div class="text-6xl font-pinyon">
+        Cozy Threads
+    </div>
     <div class="max-w-3xl h-fit">
         <CardStack :items="allItems"></CardStack>
         <div class="w-full flex flex-row justify-end">
@@ -84,11 +87,11 @@ const cart = useCartStore();
           </SheetHeader>
           <div class="flex flex-col items-start space-y-4 h-full w-full">
             <div 
-                class="bg-slate-100 rounded-xl w-full h-fit p-3"
+                class="bg-slate-100 rounded-2xl w-full h-fit p-5"
                 v-for="item of cart.getCart"
             >
                 <div 
-                    class="flex flex-row items-center"
+                    class="flex flex-row items-center space-x-3"
                 >
                     <NuxtImg
                         :src="item.image"
@@ -101,6 +104,12 @@ const cart = useCartStore();
                     >
                     </NuxtImg>
 
+                    <div class="w-fit h-fit grid grid-cols-1 gap-0.5">
+                        <span class="font-bold">{{item.title}}</span>
+                        <span class="text-sm truncate w-3/4">{{item.description}}</span>
+                    </div>
+
+                    <span class="w-fit text-nowrap text-gray-500">${{item.price.toString().slice(0,-2)}}.{{item.price.toString().slice(-2)}}</span>
                 </div>
                 
 

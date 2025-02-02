@@ -13,6 +13,7 @@ const cart = useCartStore();
         <Card 
             v-for="(item, index) in items"
             :key="index"
+            class="lg:grow h-full w-full"
         >
             <CardHeader>
               <CardTitle>{{item.title}}</CardTitle>
