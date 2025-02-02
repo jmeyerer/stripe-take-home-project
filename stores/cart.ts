@@ -12,6 +12,23 @@ export const useCartStore = defineStore('cartStore', {
         }));
       },
       addToCart(newItem: CheckoutItem) {
+        // If quantity is 0, remove the item (if it's in the array)
+        if(newItem.quantity.value == 0) {
+          const index = this.cart.findIndex(item => item.id === newItem.id);
+      
+          if(this.cart.length == 1) {
+            this.cart.pop()
+          }
+
+          else if(index !== -1) {
+            this.cart = this.cart.splice(index, 1);
+          }
+
+          return;
+        }
+
+        console.log('got here')
+
         if(this.cart.some(item => item.id === newItem.id)) {
           // If id of the cart object is the same, just update the quantity field
           this.cart = this.cart.map(item =>

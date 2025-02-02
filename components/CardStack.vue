@@ -50,6 +50,7 @@ const cart = useCartStore();
                 <Button
                     class="mt-auto"
                     @click="cart.addToCart(item)"
+                    :disabled="item.quantity.value === 0"
                 >
                     Add to cart
                 </Button>
