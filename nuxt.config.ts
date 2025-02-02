@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss', 
     'shadcn-nuxt',
+    '@pinia/nuxt',
   ],
   shadcn: {
     /**
@@ -22,5 +23,8 @@ export default defineNuxtConfig({
     public: {
       publishableKey: process.env.STRIPE_PUBLISHABLE_KEY ?? ""
     }
-  }
+  },
+  pinia: {
+    storesDirs: ['./stores/**'],
+  },
 })

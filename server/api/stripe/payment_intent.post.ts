@@ -2,7 +2,6 @@ import Stripe from 'stripe';
 import { CheckoutItem } from '~/composables/useCheckout'
 
 const runtimeConfig = useRuntimeConfig();
-console.log(runtimeConfig.secretKey)
 const stripe = new Stripe(runtimeConfig.secretKey as string);
 
 
@@ -19,7 +18,7 @@ function calculateOrderAmount(items: CheckoutItem[]) {
     let totalAmount = 0;
 
     for (let item of items) {
-        totalAmount += item.price;
+        totalAmount += (item.price * item.quantity);
     }
 
     return totalAmount;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { loadStripe } from '@stripe/stripe-js';
-import { PaymentIntentRequestBody } from '~/server/api/stripe/payment_intent.post.ts'
-import { CheckoutItem } from '~/composables/useCheckout.ts'
+import { PaymentIntentRequestBody } from '~/server/api/stripe/payment_intent.post'
+import { CheckoutItem } from '~/composables/useCheckout'
 
 const runtimeConfig = useRuntimeConfig();
 const stripe = await loadStripe(runtimeConfig.public.publishableKey);
@@ -9,22 +9,25 @@ const stripe = await loadStripe(runtimeConfig.public.publishableKey);
 // Create test payment intent
 const items: CheckoutItem[] = [
     {
-        name: "Pants",
+        title: "Pants",
         description: "Some pants",
         image: "/static/we_sweats.webp",
-        price: 11000
+        price: 11000,
+        quantity: 1
     },
     {
-        name: "Hat",
+        title: "Hat",
         description: "A hat",
         image: "/static/desertflower_hat.webp",
-        price: 3500
+        price: 3500,
+        quantity: 1
     },
     {
-        name: "T Shirt",
+        title: "T Shirt",
         description: "A t-shirt",
         image: "/static/atleast_tee.webp",
-        price: 7000
+        price: 7000,
+        quantity: 2
     },
 ]
 
