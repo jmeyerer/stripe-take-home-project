@@ -9,6 +9,7 @@ const stripe = await loadStripe(runtimeConfig.public.publishableKey);
 // Create test payment intent
 const items: CheckoutItem[] = [
     {
+        id: 1,
         title: "Pants",
         description: "Some pants",
         image: "/static/we_sweats.webp",
@@ -16,6 +17,7 @@ const items: CheckoutItem[] = [
         quantity: 1
     },
     {
+        id: 2,
         title: "Hat",
         description: "A hat",
         image: "/static/desertflower_hat.webp",
@@ -23,6 +25,7 @@ const items: CheckoutItem[] = [
         quantity: 1
     },
     {
+        id: 3,
         title: "T Shirt",
         description: "A t-shirt",
         image: "/static/atleast_tee.webp",
