@@ -45,10 +45,18 @@ const allItems: CheckoutItem[] = [
 
 // console.log(data.value)
 
+const cart = useCartStore();
+
+
 </script>
 
 <template>
-  <div class="bg-black w-screen h-screen flex flex-col items-center">
-    <CardStack :items="allItems"></CardStack>
+  <div class="bg-slate-100 w-screen min-h-screen h-full flex flex-col items-center py-16">
+    <div class="max-w-3xl h-fit">
+        <CardStack :items="allItems"></CardStack>
+        <div class="w-full flex flex-row justify-end">
+            <Button @click="cart.$reset()" class="">Clear cart</Button>
+        </div>
+    </div>
   </div>
 </template>
