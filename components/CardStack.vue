@@ -1,10 +1,23 @@
 <script setup lang="ts">
+import { useToast } from '@/components/ui/toast/use-toast'
+
 const props = defineProps<{
   items: CheckoutItem[]
 }>();
 
 const cart = useCartStore();
+const { getPriceString } = useCheckout();
+const { toast } = useToast();
 
+function addToCart(item: CheckoutItem) {
+    toast({
+        title: "Added to cart",
+        description: `${item.quantity.value}x ${item.title} | ${getPriceString(item.price)}`,
+        image: item.image
+    });
+
+    cart.addToCart(item);
+}
 </script>
 
 
@@ -50,10 +63,15 @@ const cart = useCartStore();
                 </NumberField>
                 <Button
                     class="mt-auto"
-                    @click="cart.addToCart(item)"
+                    @click="addToCart(item)"
                     :disabled="item.quantity.value === 0"
                 >
-                    Add to cart
+                    <span v-if="cart.getCart.some(cartItem => cartItem.id === item.id)">
+                        Update cart
+                    </span>
+                    <span v-else>
+                        Add to cart
+                    </span>
                 </Button>
             </CardFooter>
           </Card>

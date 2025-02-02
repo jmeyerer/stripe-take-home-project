@@ -17,12 +17,11 @@ export class CheckoutItem {
 }
 
 export default function useCheckout() {
-    
-    
-    
-    
+    function getPriceString(price: number) {
+        return `\$${price.toString().slice(0,-2)}.${price.toString().slice(-2)}`
+    }
     
     return {
-
+        getPriceString
     }
 }

@@ -57,6 +57,7 @@ const allItems: CheckoutItem[] = [
 // console.log(data.value)
 
 const cart = useCartStore();
+const { getPriceString } = useCheckout()
 
 
 </script>
@@ -109,7 +110,7 @@ const cart = useCartStore();
                         <span class="text-sm truncate w-3/4">{{item.description}}</span>
                     </div>
 
-                    <span class="w-fit text-nowrap text-gray-500">${{item.price.toString().slice(0,-2)}}.{{item.price.toString().slice(-2)}}</span>
+                    <span class="w-fit text-nowrap text-gray-500">{{ getPriceString(item.price) }}</span>
                 </div>
                 
 
@@ -118,5 +119,6 @@ const cart = useCartStore();
           </div>
         </SheetContent>
       </Sheet>
+      <Toaster />
   </div>
 </template>
