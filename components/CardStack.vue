@@ -22,11 +22,11 @@ function addToCart(item: CheckoutItem) {
 
 
 <template>
-    <div class="max-w-screen-xl h-fit py-8 flex flex-col items-center space-y-4 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-4">
+    <div class="max-w-screen-2xl h-fit py-8 flex flex-col items-center space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 2xl:grid-cols-4">
         <Card 
             v-for="(item, index) in items"
             :key="index"
-            class="lg:grow h-full w-full"
+            class="lg:grow h-full w-full max-w-80"
         >
             <CardHeader>
               <CardTitle>{{item.title}}</CardTitle>
