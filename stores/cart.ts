@@ -35,7 +35,7 @@ export const useCartStore = defineStore('cartStore', {
         }
 
         else if(index !== -1) {
-          this.cart = this.cart.splice(index, 1);
+          this.cart.splice(index, 1);
         }
       }
     },
