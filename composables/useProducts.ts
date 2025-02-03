@@ -1,0 +1,68 @@
+const allItems: CheckoutItem[] = [
+  {
+    id: 1,
+    title: "Cozy Pants",
+    description: "Some super cozy sweatpants to keep you warm",
+    image: "/we_sweats.webp",
+    price: 11000,
+    quantity: ref(0),
+  },
+  {
+    id: 2,
+    title: "Cozy Hat",
+    description: "A super cool hat that keeps sun out of your face",
+    image: "/desertflower_hat.webp",
+    price: 3500,
+    quantity: ref(0),
+  },
+  {
+    id: 3,
+    title: "Cozy T Shirt",
+    description: "A t-shirt with a loooooooooot of text in the description",
+    image: "/atleast_tee.webp",
+    price: 7000,
+    quantity: ref(0),
+  },
+  {
+    id: 4,
+    title: "Cozy Shorts",
+    description: "Some cozy black shorts to wear in the summer",
+    image: "/black_shorts.webp",
+    price: 3500,
+    quantity: ref(0),
+  },
+  {
+    id: 5,
+    title: "Cozy Hoodie",
+    description: "A blue super cozy hoodie to keep you warm in the winter",
+    image: "/bloom_hoodie.webp",
+    price: 8500,
+    quantity: ref(0),
+  },
+  {
+    id: 6,
+    title: "Film Hoodie",
+    description: "A super cool hoodie for film lovers, come buy it film geeks",
+    image: "/memoriesfilm_hoodie.webp",
+    price: 8000,
+    quantity: ref(0),
+  },
+  {
+    id: 7,
+    title: "Pink Jacket",
+    description: "A super dope pink jacket that'll make everyone jealous",
+    image: "/pink_jacket.webp",
+    price: 11000,
+    quantity: ref(0),
+  },
+  {
+    id: 8,
+    title: "Black T Shirt",
+    description: "A super dope black t-shirt that'll make everyone jealous",
+    image: "/pink_tee.webp",
+    price: 4500,
+    quantity: ref(0),
+  },
+];
+
+export default allItems;
