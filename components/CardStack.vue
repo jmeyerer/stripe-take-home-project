@@ -2,7 +2,7 @@
 import { useToast } from '@/components/ui/toast/use-toast'
 
 const props = defineProps<{
-  items: CheckoutItem[]
+    items: CheckoutItem[]
 }>();
 
 const cart = useCartStore();
@@ -22,50 +22,28 @@ function addToCart(item: CheckoutItem) {
 
 
 <template>
-    <div class="max-w-screen-2xl h-fit py-8 flex flex-col items-center space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 2xl:grid-cols-4">
-        <Card 
-            v-for="(item, index) in items"
-            :key="index"
-            class="lg:grow h-full w-full max-w-80"
-        >
+    <div
+        class="max-w-screen-2xl h-fit py-8 flex flex-col items-center space-y-4 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 2xl:grid-cols-4">
+        <Card v-for="(item, index) in items" :key="index" class="lg:grow h-full w-full max-w-80">
             <CardHeader>
-              <CardTitle>{{item.title}}</CardTitle>
-              <CardDescription>{{item.description}}</CardDescription>
+                <CardTitle>{{ item.title }}</CardTitle>
+                <CardDescription>{{ item.description }}</CardDescription>
             </CardHeader>
             <CardContent>
-              <NuxtImg
-                :src="item.image"
-                format="webp"
-                alt="image"
-                width="250" 
-                height="250" 
-                class="rounded-md"
-                placeholder
-              ></NuxtImg>
+                <NuxtImg :src="item.image" format="webp" alt="image" width="250" height="250" class="rounded-md"
+                    placeholder></NuxtImg>
             </CardContent>
-            <CardFooter
-                class="flex justify-between px-6 pb-6 space-x-4"
-            >
-                <NumberField 
-                    id="quantity" 
-                    :default-value="0" 
-                    :min="0"
-                    :max="10"
-                    v-model="item.quantity.value"
-                    class="w-24"
-                >
+            <CardFooter class="flex justify-between px-6 pb-6 space-x-4">
+                <NumberField id="quantity" :default-value="0" :min="0" :max="10" v-model="item.quantity.value"
+                    class="w-24">
                     <Label for="quantity">Quantity</Label>
                     <NumberFieldContent>
-                        <NumberFieldDecrement class="p-2"/>
-                        <NumberFieldInput class="p-1 h-8"/>
-                        <NumberFieldIncrement class="p-2"/>
+                        <NumberFieldDecrement class="p-2" />
+                        <NumberFieldInput class="p-1 h-8" />
+                        <NumberFieldIncrement class="p-2" />
                     </NumberFieldContent>
                 </NumberField>
-                <Button
-                    class="mt-auto"
-                    @click="addToCart(item)"
-                    :disabled="item.quantity.value === 0"
-                >
+                <Button class="mt-auto" @click="addToCart(item)" :disabled="item.quantity.value === 0">
                     <span v-if="cart.getCart.some(cartItem => cartItem.id === item.id)">
                         Update cart
                     </span>
@@ -74,6 +52,6 @@ function addToCart(item: CheckoutItem) {
                     </span>
                 </Button>
             </CardFooter>
-          </Card>
+        </Card>
     </div>
 </template>
