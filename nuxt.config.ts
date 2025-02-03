@@ -7,7 +7,8 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@pinia/nuxt',
     '@nuxt/image',
-    '@nuxt/icon'
+    '@nuxt/icon',
+    'pinia-plugin-persistedstate/nuxt'
   ],
   shadcn: {
     /**

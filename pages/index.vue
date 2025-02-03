@@ -52,7 +52,7 @@ const allItems: CheckoutItem[] = [
     {
         id: 6,
         title: "Film Hoodie",
-        description: "A super cool hoodie for film lovers",
+        description: "A super cool hoodie for film lovers, come buy it film geeks",
         image: "/memoriesfilm_hoodie.webp",
         price: 8000,
         quantity: ref(0)
