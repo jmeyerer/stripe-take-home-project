@@ -81,7 +81,17 @@ const { getPriceString, getTotalPriceString } = useCheckout()
                             <span class="font-bold">Subtotal: </span>
                             <span>{{ getTotalPriceString(cart.getCart) }}</span>
                         </span>
+                        <NuxtLink class="pt-12" to="/checkout">
+                            <Button
+                                class="flex flex-row items-center gap-0 group pl-6 pr-4"
+                            >
+                                <span>Checkout</span>
+                                <Icon name="material-symbols-light:arrow-back-2-rounded" size="24px" class="rotate-180 transition transition-all duration-300 ease-in-out group-hover:translate-x-1"></Icon>
+                            </Button>
+                        </NuxtLink>
                     </div>
+
+                    
                 </div>
 
                 <div v-else class="font-bold text-black">
