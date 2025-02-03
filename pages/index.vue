@@ -100,7 +100,7 @@ function clearCart() {
 
 <template>
   <div
-    class="bg-slate-100 w-screen min-h-screen h-full flex flex-col items-center py-16"
+    class="bg-orange-50/25 w-screen min-h-screen h-full flex flex-col items-center py-16"
   >
     <div class="text-6xl font-pinyon">Cozy Threads</div>
     <div class="absolute top-0 right-0">
