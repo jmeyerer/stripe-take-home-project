@@ -9,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
+import { isTemplateExpression } from 'typescript';
 
 const cart = useCartStore()
 const { getPriceString, getTotalPriceString } = useCheckout()
@@ -18,8 +19,21 @@ const { getPriceString, getTotalPriceString } = useCheckout()
 <template>
     <Sheet>
         <SheetTrigger as-child>
-            <Button variant="outline">
-              Open
+            <Button 
+                class="relative w-fit h-fit py-2.5 px-4 rounded-bl-3xl rounded-tl-none rounded-tr-none rounded-br-none flex items-center justify-center"
+            >
+                <Icon
+                    name="material-symbols-light:shopping-cart"
+                    size="24px"
+                ></Icon>
+                <span>
+                    Cart
+                </span>
+                <span class="bg-red-500 font-bold w-4 h-4 rounded-full absolute top-1 left-7 text-xs text-white flex flex-col items-center">
+                    {{ 
+                        cart.getTotalItems
+                    }}
+                </span>
             </Button>
         </SheetTrigger>
         <SheetContent>

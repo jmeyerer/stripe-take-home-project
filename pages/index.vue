@@ -4,17 +4,6 @@ import { PaymentIntentRequestBody } from '~/server/api/stripe/payment_intent.pos
 import { CheckoutItem } from '~/composables/useCheckout'
 import { useToast } from '@/components/ui/toast/use-toast'
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
-
 const runtimeConfig = useRuntimeConfig();
 const stripe = await loadStripe(runtimeConfig.public.publishableKey);
 
@@ -78,13 +67,16 @@ function clearCart() {
     <div class="text-6xl font-pinyon">
         Cozy Threads
     </div>
-    <div class="max-w-3xl h-fit">
+    <div class="absolute top-0 right-0">
+        <Cart></Cart>
+    </div>
+    <div class="relative max-w-3xl h-fit">
+        
         <CardStack :items="allItems"></CardStack>
         <div class="w-full flex flex-row justify-end">
             <Button @click="clearCart()" class="">Clear cart</Button>
         </div>
     </div>
-    <Cart></Cart>
     <Toaster />
   </div>
 </template>

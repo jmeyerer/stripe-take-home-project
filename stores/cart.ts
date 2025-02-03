@@ -43,6 +43,15 @@ export const useCartStore = defineStore('cartStore', {
       getCart: (state) =>  state.cart.map(item => ({
         ...item,
         quantity: unref(item.quantity) // Unwrap ref when returning
-      }))
+      })),
+      getTotalItems: (state) => {
+        if(state.cart.length == 0) return 0;
+
+        let totalItems = 0;
+        for (let item of state.cart) {
+          totalItems += item.quantity
+        }  
+        return totalItems
+      }
     },
   })
