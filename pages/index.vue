@@ -1,25 +1,8 @@
 <script setup lang="ts">
-import { loadStripe } from "@stripe/stripe-js";
-import { PaymentIntentRequestBody } from "~/server/api/stripe/payment_intent.post";
-import { CheckoutItem } from "~/composables/useCheckout";
 import { useToast } from "@/components/ui/toast/use-toast";
 import allItems from "~/composables/useProducts"
 
 const runtimeConfig = useRuntimeConfig();
-const stripe = await loadStripe(runtimeConfig.public.publishableKey);
-
-// Create test payment intent
-
-// const { data } = await useFetch(
-//     '/api/stripe/payment_intent',
-//     {
-//         method: "post",
-//         body: {items: items},
-//         server: false
-//     }
-// )
-
-// console.log(data.value)
 
 const cart = useCartStore();
 const { toast } = useToast();
