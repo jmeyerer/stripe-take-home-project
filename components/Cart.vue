@@ -9,7 +9,6 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet'
-import { isTemplateExpression } from 'typescript';
 
 const cart = useCartStore()
 const { getPriceString, getTotalPriceString } = useCheckout()
