@@ -15,6 +15,10 @@ const stripe = await loadStripe(runtimeConfig.public.publishableKey);
 const cart = useCartStore();
 const { getPriceString, getTotalPriceString } = useCheckout();
 
+let elements;
+
+const loading = ref(false)
+
 // Create form schema
 const formSchema = toTypedSchema(
   z.object({
@@ -41,8 +45,6 @@ async function initialize() {
 
   const clientSecret = data.value?.client_secret;
 
-  let elements;
-
   const appearance = {
     theme: "stripe",
   };
@@ -60,15 +62,58 @@ async function initialize() {
 
 initialize();
 
-const onSubmit = form.handleSubmit((values) => {
-  console.log("Form submitted!", values);
+const onSubmit = form.handleSubmit(async (values) => {
+  setLoading(true);
+
+  const { error } = await stripe.confirmPayment({
+    elements,
+    confirmParams: {
+      // Make sure to change this to your payment completion page
+      return_url: "http://localhost:3000/success",
+      receipt_email: values?.email ?? ""
+    },
+  });
+
+  // This point will only be reached if there is an immediate error when
+  // confirming the payment. Otherwise, your customer will be redirected to
+  // your `return_url`. For some payment methods like iDEAL, your customer will
+  // be redirected to an intermediate site first to authorize the payment, then
+  // redirected to the `return_url`.
+  if (error.type === "card_error" || error.type === "validation_error") {
+    showMessage(error.message);
+  } else {
+    showMessage("An unexpected error occurred.");
+  }
+
+  setLoading(false);
 });
+
+function showMessage(messageText) {
+  const messageContainer = document.querySelector("#payment-message");
+
+  messageContainer.classList.remove("hidden");
+  messageContainer.textContent = messageText;
+
+  setTimeout(function () {
+    messageContainer.classList.add("hidden");
+    messageContainer.textContent = "";
+  }, 4000);
+}
+
+// Show a spinner on payment submission
+function setLoading(isLoading) {
+  if (isLoading) {
+    loading.value = true;
+  } else {
+    loading.value = false;
+  }
+}
 </script>
 
 <template>
-  <div class="w-screen h-full min-h-screen bg-white flex flex-row items-center">
+  <div class="w-screen h-full min-h-screen bg-white flex flex-col lg:flex-row lg:items-center">
     <div
-      class="bg-orange-50/50 w-full h-screen p-16 border border-r-1 border-gray-300 basis-2/5 shrink-0 flex flex-col items-start space-y-8"
+      class="bg-orange-50/50 w-full h-full basis-2/5 shrink-0 flex flex-col items-center lg:items-start space-y-8 lg:min-h-screen p-12 lg:p-16 border-b border-b-1 lg:border-b-0 lg:border-r lg:border-r-1 border-gray-300"
     >
       <Breadcrumb>
         <BreadcrumbList>
@@ -83,7 +128,7 @@ const onSubmit = form.handleSubmit((values) => {
       </Breadcrumb>
       <NuxtLink
         to="/"
-        class="text-3xl font-pinyon w-fit h-fit z-100 after:block after:w-36 after:h-1 after:border-b after:border-black after:-translate-y-2 after:-z-10"
+        class="w-full h-fit z-100 text-5xl text-center font-pinyon py-4 lg:text-5xl lg:w-fit lg:text-left lg:after:block after:w-54 after:h-1 after:border-b after:border-black after:-translate-y-2.5 after:-z-10"
       >
         Cozy Threads
       </NuxtLink>
@@ -135,8 +180,8 @@ const onSubmit = form.handleSubmit((values) => {
         >
       </div>
     </div>
-    <div class="grow flex flex-col items-center">
-      <div class="w-full max-w-md py-16 h-fit">
+    <div class="grow flex flex-col items-center lg:overflow-y-scroll lg:max-h-screen">
+      <div class="w-full max-w-md lg:max-w-lg p-12 lg:py-16 h-fit">
         <span class="text-xl font-semibold">Billing Info</span>
         <form
           id="payment-form"
@@ -172,8 +217,8 @@ const onSubmit = form.handleSubmit((values) => {
           <div id="payment-element">
             <!--Stripe.js injects the Payment Element-->
           </div>
-          <Button id="submit" class="w-full">
-            <div class="spinner hidden" id="spinner"></div>
+          <Button id="submit" class="w-full" :disabled="loading">
+            <LoadingSpinner v-if="loading" />
             <span id="button-text">Pay now</span>
           </Button>
           <div id="payment-message" class="hidden"></div>
