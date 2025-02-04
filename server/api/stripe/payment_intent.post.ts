@@ -23,7 +23,7 @@ function calculateOrderAmount(items: CheckoutItem[]) {
     let totalAmount = 0;
 
     for (let item of items) {
-        totalAmount += (item.price * item.quantity.value);
+        totalAmount += (item.price * item.quantity);
     }
 
     return totalAmount;
@@ -53,7 +53,7 @@ export default defineEventHandler(async (event) => {
 
     // Return the response from the Stripe API of the newly created PaymentIntent
     return {
-        paymentIntent: paymentIntent
+        ...paymentIntent
     };
 });
 
