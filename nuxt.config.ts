@@ -30,7 +30,19 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./stores/**'],
   },
+  nitro: {
+    static: true,
+  },
   image: {
     provider: "ipx",
+    presets: {
+      cart: {
+        modifiers: {
+          format: 'webp',
+          width: 50,
+          height: 50
+        }
+      }
+    }
   }
 })
