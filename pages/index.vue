@@ -2,8 +2,6 @@
 import { useToast } from "@/components/ui/toast/use-toast";
 import allItems from "~/composables/useProducts"
 
-const runtimeConfig = useRuntimeConfig();
-
 const cart = useCartStore();
 const { toast } = useToast();
 
