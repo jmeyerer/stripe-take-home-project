@@ -155,16 +155,14 @@ function setLoading(isLoading) {
             <!-- Cart item card -->
             <div class="w-full flex flex-row items-center space-x-4">
               <!-- Product image -->
-              <NuxtImg
+              <img
                 :src="item.image"
                 alt="image"
-                preset="cart"
-                format="webp"
-                provider="static"
+                width="50px"
+                height="50px"
                 class="rounded-lg outline outline-slate-400 outline-2"
-                placeholder
               >
-              </NuxtImg>
+              </img>
 
               <!-- Product title and description -->
               <div
