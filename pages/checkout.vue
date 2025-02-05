@@ -159,6 +159,7 @@ function setLoading(isLoading) {
                 :src="item.image"
                 alt="image"
                 preset="cart"
+                format="webp"
                 class="rounded-lg outline outline-slate-400 outline-2"
                 placeholder
               >
