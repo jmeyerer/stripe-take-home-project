@@ -30,7 +30,7 @@ function addToCart(item: CheckoutItem) {
                 <CardDescription>{{ item.description }}</CardDescription>
             </CardHeader>
             <CardContent>
-                <NuxtImg :src="item.image" format="webp" alt="image" width="250" height="250" class="rounded-md"
+                <NuxtImg :src="item.image" format="webp" alt="image" width="250" height="250" sizes="xs:50px, sm:250px, md:500px" class="rounded-md"
                     placeholder></NuxtImg>
             </CardContent>
             <CardFooter class="flex justify-between px-6 pb-6 space-x-4">
