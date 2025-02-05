@@ -14,9 +14,9 @@ const { toasts } = useToast()
           <img
             v-if="toast.image"
             :src="toast.image"
-            width="50"
-            height="50"
-            class="rounded-md w-fit h-fit"
+            width="50px"
+            height="50px"
+            class="rounded-md"
           ></img>
           <div class="flex flex-col space-y-0.5">
             <ToastTitle v-if="toast.title" class="text-base">

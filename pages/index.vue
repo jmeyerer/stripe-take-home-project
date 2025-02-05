@@ -24,9 +24,6 @@ function clearCart() {
     </div>
     <div class="relative max-w-screen-3xl h-fit">
       <CardStack :items="allItems"></CardStack>
-      <div class="w-full flex flex-row justify-end">
-        <Button @click="clearCart()" class="">Clear cart</Button>
-      </div>
     </div>
     <Toaster />
   </div>
