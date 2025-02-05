@@ -157,10 +157,8 @@ function setLoading(isLoading) {
               <!-- Product image -->
               <NuxtImg
                 :src="item.image"
-                format="webp"
                 alt="image"
-                width="50"
-                height="50"
+                preset="cart"
                 class="rounded-lg outline outline-slate-400 outline-2"
                 placeholder
               >
