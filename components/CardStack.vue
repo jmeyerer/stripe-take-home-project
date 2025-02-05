@@ -17,6 +17,7 @@ function addToCart(item: CheckoutItem) {
     });
 
     cart.addToCart(item);
+    item.quantity.value = 0;  // Reset the quantity of item user just added to cart to 0
 }
 </script>
 
