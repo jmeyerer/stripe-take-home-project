@@ -1,3 +1,9 @@
+# [Site Deployment URL](https://stripe-take-home-project-virid.vercel.app/)
+
+[https://stripe-take-home-project-virid.vercel.app/](https://stripe-take-home-project-virid.vercel.app/)
+
+
+
 # Nuxt Minimal Starter
 
 Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
