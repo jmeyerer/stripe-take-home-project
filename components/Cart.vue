@@ -49,7 +49,7 @@ const { getPriceString, getTotalPriceString } = useCheckout()
                     <!-- Cart item card -->
                     <div class="w-full flex flex-row items-center space-x-4">
                         <!-- Product image -->
-                        <NuxtImg :src="item.image" alt="image" format="webp" preset="cart"
+                        <NuxtImg :src="item.image" alt="image" format="webp" provider="static" preset="cart"
                             class="rounded-lg outline outline-slate-400 outline-2" placeholder>
                         </NuxtImg>
 

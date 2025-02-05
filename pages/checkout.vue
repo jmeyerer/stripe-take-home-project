@@ -160,6 +160,7 @@ function setLoading(isLoading) {
                 alt="image"
                 preset="cart"
                 format="webp"
+                provider="static"
                 class="rounded-lg outline outline-slate-400 outline-2"
                 placeholder
               >
