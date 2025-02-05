@@ -29,10 +29,13 @@ function addToCart(item: CheckoutItem) {
                 <CardTitle>{{ item.title }}</CardTitle>
                 <CardDescription>{{ item.description }}</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent class="flex flex-col items-center pb-0">
                 <img :src="item.image" alt="image" width="250" height="250" class="rounded-md"></img>
+                <span class="w-full flex justify-end px-4 pt-1 italic text-gray-500 text-lg font-semibold">
+                    <span>{{getPriceString(item.price)}}</span>
+                </span>
             </CardContent>
-            <CardFooter class="flex justify-between px-6 pb-6 space-x-4">
+            <CardFooter class="flex justify-between px-6 space-x-4">
                 <NumberField id="quantity" :default-value="0" :min="0" :max="10" v-model="item.quantity.value"
                     class="w-24">
                     <Label for="quantity">Quantity</Label>
