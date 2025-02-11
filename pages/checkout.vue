@@ -19,9 +19,10 @@ const stripe = await loadStripe(runtimeConfig.public.publishableKey);
 const cart = useCartStore();
 const { getPriceString, getTotalPriceString } = useCheckout();
 
-let elements;
-
 const loading = ref(false)
+
+let elements;  // Stripe elements object
+let origin = ref("");  // Origin URL for setting return_url when confirming the payment
 
 // Create form schema
 const formSchema = toTypedSchema(
@@ -36,22 +37,25 @@ const form = useForm({
   validationSchema: formSchema,
 });
 
-if (import.meta.client) {
-  initialize();
-}
+onMounted(() => {
+  if (import.meta.client) {
+    initialize();
+
+    // Set the origin for the return_url
+    origin.value = window.location.origin;
+  }
+});
 
 // Create payment intent, initialize Stripe element
 async function initialize() {
   // Create payment intent
-  const { data } = await useFetch("/api/stripe/payment_intent", {
+  const data = await $fetch("/api/stripe/payment_intent", {
     method: "post",
     body: { items: cart.getCart },
     server: false,
   });
 
-  console.log(data.value);
-
-  const clientSecret = data.value?.client_secret;
+  const clientSecret = data?.client_secret;
 
   const appearance = {
     theme: "stripe",
@@ -79,8 +83,7 @@ const onSubmit = form.handleSubmit(async (values) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/success",
+        return_url: `${origin}/success`,
         receipt_email: values?.email ?? ""
       },
     });
