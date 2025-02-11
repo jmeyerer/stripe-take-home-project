@@ -52,8 +52,6 @@ export default defineEventHandler(async (event) => {
     });
 
     // Return the response from the Stripe API of the newly created PaymentIntent
-    return {
-        ...paymentIntent
-    };
+    return paymentIntent;
 });
 
