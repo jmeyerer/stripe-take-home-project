@@ -83,7 +83,7 @@ const onSubmit = form.handleSubmit(async (values) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${origin}/success`,
+        return_url: `${origin.value}/success`,
         receipt_email: values?.email ?? ""
       },
     });
