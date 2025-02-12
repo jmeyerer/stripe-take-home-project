@@ -59,7 +59,7 @@ const { getPriceString, getTotalPriceString } = useCheckout()
                         </img>
 
                         <!-- Product title and description -->
-                        <div class="flex flex-col items-center w-full h-fit grid grid-cols-1 gap-0.5">
+                        <div class="w-full h-fit grid grid-cols-1 gap-0.5">
                             <span class="font-bold">{{ item.title }}</span>
                             <span class="text-sm truncate w-3/4">{{ item.description }}</span>
                         </div>
@@ -90,12 +90,10 @@ const { getPriceString, getTotalPriceString } = useCheckout()
                                 class="flex flex-row items-center gap-0 group pl-6 pr-4"
                             >
                                 <span>Checkout</span>
-                                <Icon name="material-symbols-light:arrow-back-2-rounded" size="24px" class="rotate-180 transition transition-all duration-300 ease-in-out group-hover:translate-x-1"></Icon>
+                                <Icon name="material-symbols-light:arrow-back-2-rounded" size="24px" class="rotate-180 transition-all duration-300 ease-in-out group-hover:translate-x-1"></Icon>
                             </Button>
                         </NuxtLink>
-                    </div>
-
-                    
+                    </div>                    
                 </div>
 
                 <div v-else class="font-bold text-black">

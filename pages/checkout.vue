@@ -169,7 +169,7 @@ function setLoading(isLoading) {
 
               <!-- Product title and description -->
               <div
-                class="flex flex-col items-center w-full h-fit grid grid-cols-1 gap-0.5"
+                class="w-full h-fit grid grid-cols-1 gap-0.5"
               >
                 <span class="font-bold">{{ item.title }}</span>
                 <span class="text-sm truncate w-3/4">{{ item.description }}</span>

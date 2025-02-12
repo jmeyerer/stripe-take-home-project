@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import allItems from "~/composables/useProducts"
-
+import allItems from "~/composables/useProducts";
 </script>
 
 <template>
