@@ -19,7 +19,7 @@ const { getPriceString, getTotalPriceString } = useCheckout()
     <Sheet>
         <SheetTrigger as-child>
             <Button
-                class="relative w-fit h-fit py-2.5 px-4 rounded-bl-3xl rounded-tl-none rounded-tr-none rounded-br-none flex items-center justify-center">
+                class="relative bg-pink-500 w-fit h-fit py-2.5 px-4 rounded-bl-3xl rounded-tl-none rounded-tr-none rounded-br-none flex items-center justify-center">
                 <Icon name="material-symbols-light:shopping-cart" size="24px"></Icon>
                 <span>
                     Cart

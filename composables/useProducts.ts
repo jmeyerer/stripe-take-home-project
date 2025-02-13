@@ -40,6 +40,14 @@ const allItems: CheckoutItem[] = [
     quantity: ref(0),
   },
   {
+    id: 10,
+    title: "Cozy Hoodie",
+    description: "A blue super cozy hoodie to keep you warm in the winter",
+    image: "/bloom_hoodie.webp",
+    price: 9500,
+    quantity: ref(0),
+  },
+  {
     id: 6,
     title: "Film Hoodie",
     description: "A super cool hoodie for film lovers, come buy it film geeks",
